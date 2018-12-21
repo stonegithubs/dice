@@ -1,0 +1,7 @@
+// text helper
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right {text-align: right}
+.text-bold {font-weight: 700;}
+.text-wrap { @include text-wrap(); }
+.text-hyphens {@include text-hyphens();}

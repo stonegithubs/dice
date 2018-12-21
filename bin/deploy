@@ -1,0 +1,9 @@
+#!/bin/bash
+
+path=$(dirname $0)
+cd ${path}/..
+root=$(pwd)
+echo "${root}"
+
+rsync -avz --delete-after -e "ssh -i ~/.ssh/fcklinode_rsa.file -p 22" ${root}/dist/ root@139.162.8.12:/data/beardev/static/
+# rsync -avz --delete-after -e "ssh -i ~/.ssh/fcklinode_rsa.file -p 22" ${root}/dist/ root@139.162.40.32:/data/beardev/static/

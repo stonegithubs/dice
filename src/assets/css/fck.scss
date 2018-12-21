@@ -1,0 +1,468 @@
+@import "var.scss";
+@import "base.scss";
+// @import "buttons";
+// @import "table.scss";
+// @import "form.scss";
+@import "colors.scss";
+@import "helper.scss";
+@import "icon.css";
+@import "animate.css";
+
+// Grid Design
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .row.grow,
+.row .grow {
+    flex-grow: 1;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.row.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+    @include make-grid-columns-without-gutter();
+}
+
+@include make-grid-columns();
+
+@include loop-grid-columns(12);
+
+@include loop-grid-columns-equal(12);
+
+// display
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mask {
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .45);
+}
+
+/* 设置滚动条的样式 */
+.scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* 滚动槽 */
+.scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+.scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #5d4344;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.scroll::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4);
+}
+
+.hide,
+.hidden {
+    display: none;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    background-color: #110f0d;
+    background-image: url(../img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center 0;
+    // background-attachment: fixed;
+    font-size: 14px;
+}
+
+ul,
+li,
+ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+em {
+    font-style: normal;
+}
+
+.wrap {
+    width: 62.5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.user-coin,
+.result-coin {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    opacity: 0.3;
+    transition: opacity 0.4s ease-in-out;
+
+    &.active {
+        opacity: 1;
+    }
+
+    &.front {
+        margin-right: 2.5em;
+        background: rgba(#c09781, 0.5) url(../img/front.png) no-repeat center/35% auto;
+    }
+
+    &.back {
+        background: rgba(#c09781, 0.5) url(../img/back.png) no-repeat center/35% auto;
+    }
+}
+
+.dice,
+.user-dice,
+.result-dice {
+    display: inline-block;
+    position: relative;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    border-radius: 10px;
+    margin: 0 15px;
+    background: linear-gradient(to top right, #8f8885, #8f8885) no-repeat;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+
+    &:first-child,
+    &:nth-child(4) {
+        margin-left: 0;
+    }
+
+    &:last-child,
+    &:nth-child(3) {
+        margin-right: 0;
+    }
+
+    &:nth-child(n+4) {
+        margin-top: 15px;
+    }
+
+    &.active {
+        background: linear-gradient(to top right, #fff, #fff) no-repeat;
+        filter: drop-shadow(0 0 5px #caaa99)
+        drop-shadow(0 0 2px rgba(#caaa99, 0.2))
+    }
+
+    &::before,
+    &::after,
+    >b::before,
+    >b::after {
+        position: absolute;
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background-color: #4d4556;
+        display: none;
+    }
+
+    // &.active::before,
+    // &.active::after,
+    // &.active>b::before,
+    // &.active>b::after {
+    //     // background-color: #f00 !important;
+    // }
+
+    // 一
+    &.one::before {
+        display: block;
+        top: 50%;
+        left: 50%;
+        margin: -4px 0 0 -4px;
+    }
+
+    // 二 三
+    &.two::before,
+    &.three::before {
+        display: block;
+        right: 20%;
+        top: 20%;
+    }
+
+    &.two::after,
+    &.three::after {
+        display: block;
+        left: 20%;
+        bottom: 20%;
+    }
+
+    &.three b::before {
+        display: block;
+        left: calc(50% - 4px);
+        top: calc(50% - 4px);
+    }
+
+    // 四 五
+    &.four::before,
+    &.five::before,
+    &.six::before {
+        display: block;
+        left: calc(30% - 4px);
+        top: calc(20%);
+    }
+
+    &.four::after,
+    &.five::after,
+    &.six::after {
+        display: block;
+        right: calc(30% - 4px);
+        top: calc(20%);
+    }
+
+    &.four b::before,
+    &.five b:first-child::before,
+    &.six b:first-child::before {
+        display: block;
+        left: calc(30% - 4px);
+        bottom: calc(20%);
+    }
+
+    &.four b::after,
+    &.five b:first-child::after,
+    &.six b:first-child::after {
+        display: block;
+        right: calc(30% - 4px);
+        bottom: calc(20%);
+    }
+
+    // 五
+    &.five b:last-child::after {
+        display: block;
+        left: calc(50% - 4px);
+        top: calc(50% - 4px);
+    }
+
+    // 六
+    &.six b:last-child::before {
+        display: block;
+        left: calc(30% - 4px);
+        top: calc(50% - 4px);
+    }
+
+    &.six b:last-child::after {
+        display: block;
+        right: calc(30% - 4px);
+        top: calc(50% - 4px);
+    }
+
+}
+
+.user-dice,
+.result-dice {
+
+    &::before,
+    &::after,
+    >b::before,
+    >b::after {
+        width: 2px;
+        height: 2px;
+        border-radius: 2px;
+    }
+
+    // 一
+    &.one::before {
+        display: block;
+        top: 50%;
+        left: 50%;
+        margin: -1px 0 0 -1px;
+    }
+
+    // 二 三
+    &.two::before,
+    &.three::before {
+        display: block;
+        right: 20%;
+        top: 20%;
+    }
+
+    &.two::after,
+    &.three::after {
+        display: block;
+        left: 20%;
+        bottom: 20%;
+    }
+
+    &.three b::before {
+        display: block;
+        left: calc(50% - 1px);
+        top: calc(50% - 1px);
+    }
+
+    // 四 五
+    &.four::before,
+    &.five::before,
+    &.six::before {
+        display: block;
+        left: calc(30% - 1px);
+        top: calc(20%);
+    }
+
+    &.four::after,
+    &.five::after,
+    &.six::after {
+        display: block;
+        right: calc(30% - 1px);
+        top: calc(20%);
+    }
+
+    &.four b::before,
+    &.five b:first-child::before,
+    &.six b:first-child::before {
+        display: block;
+        left: calc(30% - 1px);
+        bottom: calc(20%);
+    }
+
+    &.four b::after,
+    &.five b:first-child::after,
+    &.six b:first-child::after {
+        display: block;
+        right: calc(30% - 1px);
+        bottom: calc(20%);
+    }
+
+    // 五
+    &.five b:last-child::after {
+        display: block;
+        left: calc(50% - 1px);
+        top: calc(50% - 1px);
+    }
+
+    // 六
+    &.six b:last-child::before {
+        display: block;
+        left: calc(30% - 1px);
+        top: calc(50% - 1px);
+    }
+
+    &.six b:last-child::after {
+        display: block;
+        right: calc(30% - 1px);
+        top: calc(50% - 1px);
+    }
+}
+
+.user-dice2,
+.result-dice2 {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 42px;
+    margin-bottom: 10px;
+    margin-right: 12px;
+    text-align: left;
+    opacity: 0.3;
+    color: #c4a493;
+    background: url('../img/dice2-dbg.png') no-repeat center/100%;
+
+    &:nth-child(4), &:nth-child(7), &:last-child {
+        margin-right: 0;
+    }
+
+    &.active {
+        opacity: 1;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        bottom: 5px;
+        left: 2px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    &.two::before {
+        content: '2';
+    }
+
+    &.three::before {
+        content: '3';
+    }
+
+    &.four::before {
+        content: '4';
+    }
+
+    &.five::before {
+        content: '5';
+    }
+
+    &.six::before {
+        content: '6';
+    }
+
+    &.seven::before {
+        content: '7';
+    }
+
+    &.eight::before {
+        content: '8';
+    }
+
+    &.nine::before {
+        content: '9';
+    }
+
+    &.ten::before {
+        content: '10';
+    }
+
+    &.eleven::before {
+        content: '11';
+    }
+
+    &.twelve::before {
+        content: '12';
+    }
+}
+
+.win .result-coin {
+    background-color: rgba(#fff, 1) !important;
+    border-color: rgba(196, 114, 162, 0.22);
+}
+
+.user-dice, .result-dice {
+    border-radius: 3px;
+}
+
+.win .result-dice {
+    background: #fff !important;
+}

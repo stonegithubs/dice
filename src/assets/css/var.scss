@@ -1,0 +1,115 @@
+// colors
+$grey-darker: #222;
+$grey-dark: #333;
+$grey: #555;
+$grey-light: #777;
+$grey-lighter: #eee;
+$color-default: #b6c2c9;
+$color-primary: #348fe2;
+$color-info: #49b6d6;
+$color-success: #84b547;
+$color-danger: #ff5b57;
+$color-warning: #f59c1a;
+$color-inverted: #2d353c;
+$color-white: #fff;
+
+// grid
+$grid-columns: 12; //grid-12 default
+$grid-gutter: 30px;
+
+// typography
+$line-height-base: 1.53846; //20 / 14
+$font-size-base: 14px;
+$text-color: #fff;
+
+// buttons
+$btn-border-radius: 3px;
+$btn-font-size: $font-size-base;
+$btn-line-height: $line-height-base;
+
+// table
+$table-border-color: rgba(255,255,255,.4);
+$table-head-bg-color: transparent;
+$table-striped-bg-color: #f5f5f5;
+$table-hover-bg-color: #f5f5f5;
+
+// form
+$input-bg-color: #fff;
+$input-border-color: #ddd;
+$input-border-color-focus: $color-primary;
+$input-border-radius: 3px;
+$input-text-color: #333;
+$input-font-size: $font-size-base;
+$input-line-height: $line-height-base;
+
+// mixins
+@mixin make-grid-columns($i: 1, $list: ".col-#{$i}") {
+    @for $i from (1 + 1) through $grid-columns {
+        $list: "#{$list}, .col-#{$i}";
+    }
+    #{$list} {
+        position: relative;
+        min-height: 1px;
+        padding-left: ceil(($grid-gutter/2));
+        padding-right: floor(($grid-gutter/2));
+    }
+}
+@mixin make-grid-columns-without-gutter($i: 1, $list: ".col-#{$i}") {
+    @for $i from (1 + 1) through $grid-columns {
+        $list: "#{$list}, .col-#{$i}";
+    }
+    #{$list} {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@mixin loop-grid-columns($columns) {
+    @for $i from 1 through $columns {
+        .col-#{$i} {
+            width: percentage($i / $columns);
+        }
+        .col-offset-#{$i} {
+            margin-left: percentage($i / $columns);
+        }
+
+    }
+}
+@mixin loop-grid-columns-equal($columns) {
+    @for $i from 1 through $columns {
+        .cols-#{$i} > .col-1 {
+            width: percentage(1 / $i);
+        }
+    }
+}
+// ellipsis
+@mixin ellipsis($width) {
+    width: $width;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+@mixin ellipsis-line($line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+}
+@mixin text-wrap() {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+@mixin text-hyphens {
+    word-wrap: break-word;
+    hyphens: auto;
+}
+// disabled
+@mixin disabled() {
+    cursor: not-allowed;
+    //background-color: #eee;
+    opacity: .65;
+    &:focus {
+        border-color: $input-border-color;
+    }
+}

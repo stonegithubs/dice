@@ -1,0 +1,35 @@
+{
+    "name": "html",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "build-dev": "vue-cli-service build --mode development",
+        "deploy-dev": "rsync -avz --delete-after ./bear/ bear:/data/beardev/static/",
+        "deploy": "sh -c ./bin/deploy"
+    },
+    "dependencies": {
+        "@tweenjs/tween.js": "^17.2.0",
+        "calculatorjs": "^1.1.2",
+        "js-cookie": "^2.2.0",
+        "vue": "^2.5.17",
+        "vue-gemini-scrollbar": "^2.0.0",
+        "vue-resource": "^1.5.1",
+        "vue-router": "^3.0.1",
+        "vue-slider-component": "^2.7.11",
+        "vue-translator": "^0.8.0",
+        "vuex": "^3.0.1",
+        "web3": "=0.20.6"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.0.5",
+        "@vue/cli-plugin-eslint": "^3.0.5",
+        "@vue/cli-service": "^3.0.5",
+        "eslint-plugin-html": "^4.0.6",
+        "node-sass": "^4.9.0",
+        "sass-loader": "^7.0.1",
+        "shelljs": "^0.8.2",
+        "vue-template-compiler": "^2.5.17"
+    }
+}

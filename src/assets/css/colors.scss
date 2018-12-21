@@ -1,0 +1,47 @@
+// --------------------------
+// Colors
+// --------------------------
+// background color
+.bg-primary {
+    background-color: $color-primary;
+}
+.bg-info {
+    background-color: $color-info;
+}
+.bg-success {
+    background-color: $color-success;
+}
+.bg-danger, .bg-error {
+    background-color: $color-danger;
+}
+.bg-warning {
+    background-color: $color-warning;
+}
+.bg-inverted {
+    background-color: $color-inverted;
+}
+// text color
+.text-muted {
+    color: $grey;
+}
+.text-white {
+    color: $color-white;
+}
+.text-primary {
+    color: $color-primary;
+}
+.text-info {
+    color: $color-info;
+}
+.text-success {
+    color: $color-success;
+}
+.text-danger, .text-error {
+    color: $color-danger;
+}
+.text-warning {
+    color: $color-warning;
+}
+.text-inverted {
+    color: $color-inverted;
+}
